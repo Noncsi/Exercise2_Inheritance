@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +25,7 @@ namespace CreateClass
         }
     }
 
-    class Employee : Person, ICloneable
+    class Employee : Person
     {
         public int salary;
         public string profession;
@@ -36,14 +36,11 @@ namespace CreateClass
             this.profession = profession;
         }
 
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
-
         public override string ToString()
         {
-            return "salary: " + salary + "\n" +
+            return "name: " + name + "\n" +
+                   "birthDate: " + birthDate + "\n" +
+                   "salary: " + salary + "\n" +
                    "profession: " + profession;
         }
     }
@@ -52,7 +49,7 @@ namespace CreateClass
     {
         public int Number;
 
-        public Room(string name, int Number)
+        public Room(string name, DateTime birthDate, int salary, string profession, int Number) : base(name, birthDate, salary, profession)
         {
             this.Number = Number;
         }
@@ -62,12 +59,8 @@ namespace CreateClass
     {
         static void Main(string[] args)
         {
-            Employee Kovacs = new Employee("Géza", DateTime.Now, 1000, "léhűtő");
-            Kovacs.Room = new Room(111);
-            Employee Kovacs2 = (Employee)Kovacs.Clone();
-            Kovacs2.Room.Number = 112;
-            Console.WriteLine(Kovacs.ToString());
-            Console.WriteLine(Kovacs2.ToString());
+            Employee Hát = new Employee("Izsák", DateTime.Now, 2000, "Sewer");
+            Console.WriteLine(Hát);
             Console.ReadKey();
         }
     }
